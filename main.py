@@ -81,3 +81,20 @@ def handle_message(event):
 
 if __name__ == "__main__":
     app.run()
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    user_message = event.message.text
+
+    if user_message == "おみくじ":
+        result = random.choice(omikuji_list)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result)
+        )
+    else:
+        # 「おみくじ」以外のメッセージにはこれで返す
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="「おみくじ」と送ってくれたら運勢を占うよ！")
+        )
