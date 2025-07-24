@@ -97,4 +97,6 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="「おみくじ」と送ってくれたら運勢を占うよ！")
+
+            @app.route("/callback", methods=['POST'])
         )
