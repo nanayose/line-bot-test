@@ -374,6 +374,19 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=reply_text)
         )
+        elif any(word in event.message.text.lower() for word in ["負け", "まけ", "死んだ", "終わった", "負けた", "まけた"]):
+    messages = [
+        "今日はたまたま運が悪かっただけ…次はきっと勝てるで！",
+        "負けても大丈夫！私はあなたの味方やで。",
+        "そんな日もあるさ！ギャンブルはメンタルスポーツ！",
+        "一緒に泣こ…でも次は笑えるように応援するで！",
+        "よし、次は勝ちフラグ立てにいこっか！"
+    ]
+    reply_message = random.choice(messages)
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="えまから慰めの一言：\n" + reply_message)
+    )
     else:
         line_bot_api.reply_message(
             event.reply_token,
