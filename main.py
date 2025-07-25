@@ -13,7 +13,8 @@ line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 # おみくじ一覧
-omikuji_list = {
+omikuji_list = [
+     {
      "運勢": "🌟超大当たり",
         "タイトル": "神降臨",
         "ギャンブル運": "★★★★★★☆",
