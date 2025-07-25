@@ -361,39 +361,53 @@ def handle_message(event):
     user_message = event.message.text.strip()
 
     if user_message == "おみくじ":
-    result = random.choice(omikuji_list)
-    reply_text = (
-        f"運勢　: {result['運勢']}\n"
-        f"えまみくじ　: {result['えまみくじ']}\n"
-        f"ギャンブル運　: {result['ギャンブル運']}\n"
-        f"ラッキーアイテム　: {result['ラッキーアイテム']}\n"
-        f"メッセージ　: {result['メッセージ']}\n"
-        f"えまから一言　: {result['えまから一言']}"
-    )
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=reply_text)
-    )
+        result = random.choice(omikuji_list)
+        reply_text = (
+            f"運勢　: {result['運勢']}\n"
+            f"えまみくじ　: {result['えまみくじ']}\n"
+            f"ギャンブル運　: {result['ギャンブル運']}\n"
+            f"ラッキーアイテム　: {result['ラッキーアイテム']}\n"
+            f"メッセージ　: {result['メッセージ']}\n"
+            f"えまから一言　: {result['えまから一言']}"
+        )
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply_text)
+        )
 
-elif any(word in user_message for word in ["負け", "まけ", "死んだ", "終わった", "負けた", "まけた"]):
-    messages = [
-        "今日はたまたま運が悪かっただけ…次はきっと勝てるで！",
-        "負けても大丈夫！私はあなたの味方やで。",
-        "そんな日もあるさ！ギャンブルはメンタルスポーツ！",
-        "一緒に泣こ…でも次は笑えるように応援するで！",
-        "よし、次は勝ちフラグ立てにいこっか！"
-    ]
-    reply_message = random.choice(messages)
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="えまから慰めの一言：\n" + reply_message)
-    )
+    elif any(word in user_message for word in ["負け", "まけ", "死んだ", "終わった", "負けた", "まけた"]):
+        messages = [
+            "今日はたまたま運が悪かっただけ…次はきっと勝てるで！",
+            "負けても大丈夫！私はあなたの味方やで。",
+            "そんな日もあるさ！ギャンブルはメンタルスポーツ！",
+            "一緒に泣こ…でも次は笑えるように応援するで！",
+            "よし、次は勝ちフラグ立てにいこっか！"
+        ]
+        reply_message = random.choice(messages)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="えまから慰めの一言：\n" + reply_message)
+        )
 
-else:
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="「おみくじ」と送ってくれたら運勢を占うよ！")
-    )
+    elif any(word in user_message for word in ["勝ち", "かち", "勝った", "出た", "爆連"]):
+        congrats = [
+            "やったな！ほな焼肉や！",
+            "勝利おめでとう🎉 私も嬉しい！",
+            "その調子で明日も勝ち確やで！",
+            "出玉モリモリおめ！今日はご褒美や！",
+            "さすがやな、ヒキ強の神や！"
+        ]
+        reply_message = random.choice(congrats)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="えまからお祝いの一言：\n" + reply_message)
+        )
 
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="「おみくじ」と送ってくれたら運勢を占うよ！")
+        )
+        
 if __name__ == "__main__":
     app.run()
