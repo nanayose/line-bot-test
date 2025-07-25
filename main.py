@@ -374,7 +374,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=reply_text)
         )
-        elif any(word in event.message.text.lower() for word in ["負け", "まけ", "死んだ", "終わった", "負けた", "まけた"]):
+        elif any(word in user_message for word in ["負け", "まけ", "死んだ", "終わった", "負けた", "まけた"]):
     messages = [
         "今日はたまたま運が悪かっただけ…次はきっと勝てるで！",
         "負けても大丈夫！私はあなたの味方やで。",
