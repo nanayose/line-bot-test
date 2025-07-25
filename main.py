@@ -14,6 +14,13 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 # おみくじ一覧
 omikuji_list = [
+    {
+        "運勢": "🌟超大当たり",
+        "えまみくじ": "神降臨",
+        "ギャンブル運": "★★★★★★☆",
+        "メッセージ": "あなたの背後に神が見えます。今すぐホールへ行きましょう。",
+        "えまから一言": "もう当たる未来しか見えん。えまも出撃するわ。"
+    },
     "🌟超大当たり：神降臨「あなたの背後に神が見えます。今すぐホールへ行きましょう。」",
     "🌟超大当たり：覇者の光「7揃いが見える…！何しても当たります。」",
     "🌟超大当たり：金色爆連神「大当たりの波が止まらない！取りきれないコース、確定演出。」",
@@ -76,9 +83,16 @@ def handle_message(event):
 
     if user_message == "おみくじ":
         result = random.choice(omikuji_list)
+        reply_text = (
+            f"運勢　: {result['運勢']}\n"
+            f"えまみくじ　: {result['えまみくじ']}\n"
+            f"ギャンブル運　: {result['ギャンブル運']}\n"
+            f"メッセージ　: {result['メッセージ']}\n"
+            f"えまから一言　: {result['えまから一言']}"
+        )
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=result)
+            TextSendMessage(text=reply_text)
         )
     else:
         line_bot_api.reply_message(
