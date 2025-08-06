@@ -365,7 +365,7 @@ def handle_message(event):
         reply_text = (
             f"運勢　: {result['運勢']}\n"
             f"えまみくじ　: {result['えまみくじ']}\n"
-            f"ギャンブル運　: {result['ギャンブル運']}\n"
+            f"ギャンブル運　: {result['運勢']}\n"
             f"ラッキーアイテム　: {result['ラッキーアイテム']}\n"
             f"メッセージ　: {result['メッセージ']}\n"
             f"えまから一言　: {result['えまから一言']}"
@@ -411,4 +411,5 @@ def handle_message(event):
         
 if __name__ == "__main__":
     app.run()
+
 
